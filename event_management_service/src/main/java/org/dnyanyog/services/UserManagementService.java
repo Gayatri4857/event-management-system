@@ -1,13 +1,14 @@
 package org.dnyanyog.services;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import org.dnyanyog.dto.UserData;
+import org.dnyanyog.dto.FeedBackRequest;
+import org.dnyanyog.dto.FeedBackResponse;
 import org.dnyanyog.dto.UserRequest;
 import org.dnyanyog.dto.UserResponse;
+import org.dnyanyog.entity.FeedBack;
 import org.dnyanyog.entity.Users;
+import org.dnyanyog.repo.FeedBackRepository;
 import org.dnyanyog.repo.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,9 @@ public class UserManagementService {
 
 	@Autowired
 	List<String> userNames;
+	
+	@Autowired
+	FeedBackRepository feedbackRepo;
 
 	public UserResponse addUpdateUser(UserRequest request) {
 
@@ -50,6 +54,32 @@ public class UserManagementService {
 		return userResponse;
 		
 	}
+	
+	public FeedBackResponse addFeedback(FeedBackRequest request) {
+		FeedBackResponse feedbackResponse=new FeedBackResponse();
+				FeedBack feedbackTable = new FeedBack();
+				feedbackTable.setUsername(request.getUsername());
+				feedbackTable.setEmail(request.getEmail());
+				feedbackTable.setFeedBack(request.getFeedBack());
+				feedbackTable.setFeedBackemoji(request.getFeedBackemoji());
+				// long currentBeforeTimeMillis = System.currentTimeMillis();
+				
+				feedbackTable = feedbackRepo.save(feedbackTable);
+
+				// long currentAfterTimeMillis = System.currentTimeMillis();
+				
+				feedbackResponse.setUsername(request.getUsername());
+				feedbackResponse.setFeedBack(request.getFeedBack());
+				feedbackResponse.setEmail(request.getEmail());
+				feedbackResponse.setFeedBackemoji(request.getFeedBackemoji());
+				
+				return feedbackResponse;
+				
+			}
+	
+
+	
+	
 	
 
 }

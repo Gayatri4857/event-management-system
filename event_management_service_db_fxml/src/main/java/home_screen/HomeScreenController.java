@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import add_event.AddEvent;
 import delete_event.DeleteEvent;
+import feedback_screen.AddFeedBackScreen;
 import frount_page.FrountPage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -78,7 +79,7 @@ public class HomeScreenController {
 	}
 	
 	public void feedback_button(ActionEvent event)throws IOException{
-		
+		AddFeedBackScreen.showAddFeedBackScreen();
 	}
 	
 	public void book_venue(ActionEvent event)throws IOException{
@@ -113,7 +114,7 @@ public class HomeScreenController {
 	}
 	
 	public void feendback(ActionEvent event)throws IOException{
-		
+		AddFeedBackScreen.showAddFeedBackScreen();
 		
 	}
 	
