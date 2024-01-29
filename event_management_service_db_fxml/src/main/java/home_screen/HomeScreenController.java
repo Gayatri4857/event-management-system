@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import search_update_screen.Search_Update_Screen;
+import search_user.SearchEventScreen;
 
 public class HomeScreenController {
 
@@ -47,7 +48,12 @@ public class HomeScreenController {
 	private Button Logout;
 	
 	public void home_button(ActionEvent event)throws IOException{
-		
+		try {
+			SearchEventScreen.showSearchScreen();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void book_venue_button(ActionEvent event)throws IOException{
@@ -119,7 +125,12 @@ public class HomeScreenController {
 	}
 	
 	public void user_button(ActionEvent event)throws IOException{
-		
+		try {
+			SearchEventScreen.showSearchScreen();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void logout(ActionEvent event)throws IOException{
 		try {

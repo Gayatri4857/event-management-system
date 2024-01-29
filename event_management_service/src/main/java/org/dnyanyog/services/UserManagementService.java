@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.dnyanyog.dto.FeedBackRequest;
 import org.dnyanyog.dto.FeedBackResponse;
+import org.dnyanyog.dto.UserData;
 import org.dnyanyog.dto.UserRequest;
 import org.dnyanyog.dto.UserResponse;
 import org.dnyanyog.entity.FeedBack;
@@ -78,8 +79,26 @@ public class UserManagementService {
 			}
 	
 
-	
-	
-	
+	public UserResponse getSingleUser(String nameToSearch) {
 
+		List<Users> receivedData = userRepo.findByUsername(nameToSearch);
+
+		if (receivedData.isEmpty()) {
+			userResponse.setStatus("fail");
+			userResponse.setMessage("User Not Found");
+		} else {
+			Users user = receivedData.get(0);
+			userResponse.setMessage("Success");
+			userResponse.setStatus("User Found");
+
+			UserData userData = userResponse.getUserData();
+			
+			userData.setRole(user.getRole());
+			userData.setEmail(user.getEmail());
+			userData.setPassword(user.getPassword());
+			userData.setUsername(user.getUsername());
+			userData.setMobile_no(user.getMobile_no());
+		}
+		return userResponse;
+	}
 }
